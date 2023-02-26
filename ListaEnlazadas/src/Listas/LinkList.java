@@ -7,7 +7,6 @@ public class LinkList <T extends Comparable<T>> implements List<T> {
 	
 	@Override
 	public void insert(T data) {
-		// TODO Auto-generated method stub
 		if(root == null) {
 			root = new Node<>(data);
 		}else {
@@ -17,7 +16,6 @@ public class LinkList <T extends Comparable<T>> implements List<T> {
 
 	//O(1)
 	private void insertBeginning(T data) {
-		// TODO Auto-generated method stub
 		Node<T> newNode = new Node<>(data);
 		newNode.setNextNode(root);
 		root = newNode;
@@ -25,7 +23,6 @@ public class LinkList <T extends Comparable<T>> implements List<T> {
 
 	//O(N)
 	private void insertEnd(T data, Node<T> node) {
-		// TODO Auto-generated method stub
 		if(node.getNextNode() != null) {
 			insertEnd(data, node.getNextNode());
 		}else {
@@ -36,13 +33,32 @@ public class LinkList <T extends Comparable<T>> implements List<T> {
 	
 	@Override
 	public void remove(T data) {
-		// TODO Auto-generated method stub
+		if(root == null)return;
 		
+		if(root.getData().compareTo(data)  == 0) {
+			root = root.getNextNode();
+		}else {
+			remove(data,root, root.getNextNode());
+		}
+	}
+
+	//O(N)
+	private void remove(T data, Node<T> previous, Node<T> actualNode) {
+		//encontrar el nodo que queremos
+		while(actualNode != null) {
+			if(actualNode.getData().compareTo(data) == 0) {
+				numberOfItems--;
+				previous.setNextNode(actualNode.getNextNode());
+				actualNode = null;
+				return;
+			}
+			previous = actualNode;
+			actualNode = actualNode.getNextNode();
+		}
 	}
 
 	@Override
 	public void traverse() {
-		// TODO Auto-generated method stub
 		if(root == null)return;
 		
 		Node<T> actualNode = root;
