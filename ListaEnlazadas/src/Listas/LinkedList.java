@@ -1,9 +1,35 @@
 package Listas;
 
-public class LinkList <T extends Comparable<T>> implements List<T> {
+public class LinkedList <T extends Comparable<T>> implements List<T> {
 
 	private Node<T> root;
 	private int numberOfItems;
+	
+	public void reverse() {
+		Node<T> actualNode = root;
+		Node<T> previousNode = null;
+		Node<T> nextNode = null;
+		
+		while(actualNode != null) {
+			nextNode = actualNode.getNextNode();
+			actualNode.setNextNode(previousNode);
+			previousNode = actualNode;
+			actualNode = nextNode;
+		}
+		root = previousNode;
+	}
+	
+	public Node<T> getMiddleNode(){
+		Node<T> slow= this.root;
+		Node<T> fast = this.root;
+		
+		// O(n/2) = O(N)
+		while(fast.getNextNode() != null && fast.getNextNode().getNextNode() != null) {
+			slow = slow.getNextNode();
+			fast = fast.getNextNode().getNextNode();
+		}
+		return slow;
+	}
 	
 	@Override
 	public void insert(T data) {
