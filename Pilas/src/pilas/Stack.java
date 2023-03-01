@@ -17,6 +17,9 @@ public class Stack<T extends Comparable<T>> {
 	}
 	
 	public T pop() {
+		
+		if(isEmpty())return null;
+		
 		T item = head.getData();
 		head = head.getNextNode();
 		count--;
