@@ -12,6 +12,10 @@ public class App {
 		ab.insert(16);
 		ab.insert(-1);
 		
+		//System.out.println(ab.getMin());
+		//System.out.println(ab.getMax());
+		
+		ab.traversal();
 	}
 
 }

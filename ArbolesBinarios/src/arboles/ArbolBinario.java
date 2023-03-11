@@ -18,7 +18,7 @@ public class ArbolBinario<T extends Comparable<T>> implements Tree<T>{
 	private void insert(T data, Node<T> node) {
 		// TODO Auto-generated method stub
 		//la data es más pequeña
-		if(node.getData().compareTo(data) < 0) {
+		if(node.getData().compareTo(data) > 0) {
 			//sigue buscadando en el subarbol izquierdo
 			if(node.getLeftChild() != null)
 				insert(data, node.getLeftChild());
@@ -46,20 +46,52 @@ public class ArbolBinario<T extends Comparable<T>> implements Tree<T>{
 
 	@Override
 	public void traversal() {
-		// TODO Auto-generated method stub
+		//in-order O(N)
+		if(root == null)return;
 		
+		traversal(root);
+		
+	}
+
+	//O(N)
+	private void traversal(Node<T> node) {
+		if(node.getLeftChild() != null)
+			traversal(node.getLeftChild());
+		
+		System.out.print(node + " - ");
+		
+		if(node.getRightChild() != null)
+			traversal(node.getRightChild());
 	}
 
 	@Override
 	public T getMin() {
-		// TODO Auto-generated method stub
-		return null;
+		if(root == null)
+			return null;
+		return getMin(root);
+	}
+
+	private T getMin(Node<T> node) {
+		if(node.getLeftChild() != null)
+			return getMin(node.getLeftChild());
+		
+		return node.getData();
 	}
 
 	@Override
 	public T getMax() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if(root == null)
+			return null;
+		return getMax(root);
+	}
+
+	private T getMax(Node<T> node) {
+		
+		if(node.getRightChild() != null)
+			return getMax(node.getRightChild());
+		
+		return node.getData();
 	}
 
 }
