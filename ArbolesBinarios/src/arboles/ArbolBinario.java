@@ -4,6 +4,10 @@ public class ArbolBinario<T extends Comparable<T>> implements Tree<T>{
 
 	private Node<T> root;
 	
+	public Node<T> getRoot() {
+		return root;
+	}
+	
 	@Override
 	public void insert(T data) {
 		// TODO Auto-generated method stub
